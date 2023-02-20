@@ -19,22 +19,15 @@ export default {
     //   ctx.commit("updateFetchStatus", false);
     // },
 
-    // addUser(ctx, user) {
-    //   user = {
-    //     ...user,
-    //     id: ctx.state.currentId,
-    //     phone: "No phone for synthetic user",
-    //     website: "synthetic-user.com",
-    //     address: {
-    //       street: "Not exists",
-    //       suite: "Not exists",
-    //       city: "Not exists",
-    //     },
-    //   };
+    addVehicle(ctx, vehicle) {
+      vehicle = {
+        ...vehicle,
+        id: ctx.state.currentId,
+      };
 
-    //   ctx.commit("updateId", 1);
-    //   ctx.commit("updateAddUser", user);
-    // },
+      ctx.commit("updateId", 1);
+      ctx.commit("updateAddVehicle", vehicle);
+    },
 
     // delUser(ctx, userId) {
     //   ctx.commit("updateDelUser", userId);
@@ -50,9 +43,9 @@ export default {
       state.vehicles = vehicles;
     },
 
-    // updateId(state, updId) {
-    //   state.currentId += updId;
-    // },
+    updateId(state, updId) {
+      state.currentId += updId;
+    },
 
     // updateCurrentUser(state, currentUser) {
     //   state.currentUser = currentUser;
@@ -62,9 +55,9 @@ export default {
     //   state.fetchStatus = newStatus;
     // },
 
-    // updateAddUser(state, user) {
-    //   state.users.unshift(user);
-    // },
+    updateAddVehicle(state, vehicle) {
+      state.vehicles.unshift(vehicle);
+    },
 
     // updateDelUser(state, userId) {
     //   state.users = state.users.filter((user) => user.id != userId);
@@ -77,7 +70,7 @@ export default {
 
   state: {
     vehicles: [], //contains full users list
-    // currentId: 11,
+    currentId: 21,
     // filterValue: "",
     // currentUser: {}, //contains current chosen user for UserPage component
     // fetchStatus: null, //represents current user fetching status to lead Loader component
