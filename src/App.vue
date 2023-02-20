@@ -1,7 +1,12 @@
 <template>
-  <div id="app">
-    <VehiclesGrid />
-    <YandexMap />
+  <div id="app" class="container">
+    <section class="my-5">
+      <VehiclesGrid />
+    </section>
+
+    <section>
+      <YandexMap />
+    </section>
   </div>
 </template>
 

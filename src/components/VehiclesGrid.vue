@@ -1,6 +1,5 @@
 <template>
-    <div class="vehicles-grid">
-        GRID
+    <div class="vehicles-grid row g-4">
         <VehicleCard v-for="vehicle in getAllVehicles" :key="vehicle.id" :vehicle="vehicle" />
     </div>
 </template>
@@ -21,4 +20,7 @@ export default {
 </script>
 
 <style>
+.vehicle-card {
+    height: 200px;
+}
 </style>

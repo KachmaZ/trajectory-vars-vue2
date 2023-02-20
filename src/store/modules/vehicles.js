@@ -3,7 +3,6 @@ export default {
   actions: {
     // Fetch all vehicles from API
     async fetchAll(ctx) {
-      console.log("START")
       const res = await fetch("https://test.tspb.su/test-task/vehicles");
       const vehicles = await res.json();
 
