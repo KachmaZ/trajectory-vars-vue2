@@ -36,6 +36,11 @@ export default {
     setFilterValue(ctx, newValue) {
       ctx.commit("updateFilterValue", newValue.trim());
     },
+
+    setEditorStatus(ctx, newStatus) {
+      console.log("new")
+      ctx.commit("updateEditorStatus", newStatus)
+    }
   },
 
   mutations: {
@@ -66,6 +71,10 @@ export default {
     updateFilterValue(state, newValue) {
       state.filterValue = newValue;
     },
+
+    updateEditorStatus(state, newStatus) {
+      state.editorStatus = newStatus;
+    }
   },
 
   state: {
@@ -73,7 +82,7 @@ export default {
     currentId: 21,
     filterValue: "name",
     // currentUser: {}, //contains current chosen user for UserPage component
-    // fetchStatus: null, //represents current user fetching status to lead Loader component
+    editorStatus: false,
   },
 
   getters: {
@@ -104,6 +113,10 @@ export default {
     getFilterValue(state) {
       return state.filterValue.toLowerCase();
     },
+
+    getEditorStatus(state) {
+      return state.editorStatus
+    }
 
     // isFetching(state) {
     //   return state.fetchStatus;
