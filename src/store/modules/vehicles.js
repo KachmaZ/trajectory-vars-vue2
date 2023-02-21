@@ -9,16 +9,6 @@ export default {
       ctx.commit("updateVehicles", vehicles);
     },
 
-    // Fetch one user from API by id
-    // async fetchById(ctx, id) {
-    //   ctx.commit("updateFetchStatus", true);
-
-    //   let user = ctx.state.users.find((user) => user.id == id);
-
-    //   ctx.commit("updateCurrentUser", user);
-    //   ctx.commit("updateFetchStatus", false);
-    // },
-
     addVehicle(ctx, vehicle) {
       vehicle = {
         ...vehicle,
@@ -33,13 +23,20 @@ export default {
       ctx.commit("updateDelVehicle", vehicleId);
     },
 
+    editVehicle(ctx, newVehicle) {
+      ctx.commit("updateEditVehicle", newVehicle)
+    },
+
     setFilterValue(ctx, newValue) {
       ctx.commit("updateFilterValue", newValue.trim());
     },
 
     setEditorStatus(ctx, newStatus) {
-      console.log("new")
       ctx.commit("updateEditorStatus", newStatus)
+    },
+
+    setCurrentVehicleId(ctx, newId) {
+      ctx.commit("updateCurrentVehicleId", newId)
     }
   },
 
@@ -52,9 +49,9 @@ export default {
       state.currentId += updId;
     },
 
-    // updateCurrentUser(state, currentUser) {
-    //   state.currentUser = currentUser;
-    // },
+    updateCurrentVehicleId(state, newId) {
+      state.currentVehicleId = newId;
+    },
 
     // updateFetchStatus(state, newStatus) {
     //   state.fetchStatus = newStatus;
@@ -66,6 +63,15 @@ export default {
 
     updateDelVehicle(state, vehicleId) {
       state.vehicles = state.vehicles.filter((vehicle) => vehicle.id != vehicleId);
+    },
+
+    updateEditVehicle(state, newVehicle) {
+      let newVehicles = [...state.vehicles]
+
+      let vehicleIndex = newVehicles.findIndex(obj => obj.id === state.currentVehicleId)
+      newVehicles[vehicleIndex] = newVehicle
+      
+      state.vehicles = newVehicles
     },
 
     updateFilterValue(state, newValue) {
@@ -81,7 +87,7 @@ export default {
     vehicles: [], //contains full users list
     currentId: 21,
     filterValue: "name",
-    // currentUser: {}, //contains current chosen user for UserPage component
+    currentVehicleId: 1, 
     editorStatus: false,
   },
 
@@ -102,13 +108,11 @@ export default {
         return 0;
       }
       return state.vehicles.sort(compareFn)
-      // return state.vehicles.sort((a, b) =>
-      //   (a[state.filterValue] > b[state.filterValue]) ? 1 : ((a[state.filterValue] > b[state.filterValue]) ? -1 : 0))
     },
 
-    // getCurrentUser(state) {
-    //   return state.currentUser;
-    // },
+    getCurrentVehicle(state) {
+      return state.vehicles.find(el => el.id === state.currentVehicleId)
+    },
 
     getFilterValue(state) {
       return state.filterValue.toLowerCase();
