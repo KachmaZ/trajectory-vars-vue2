@@ -10,7 +10,7 @@
             <div class="vehicle-card_price mb-3">Price: {{ vehicle.price }}</div>
             <div class="vehicle-card_btns">
                 <b-button variant="danger" @click="delVehicle(vehicle.id)">Delete</b-button>
-                <b-button variant="warning" @click="setEditorStatus(true)">Edit</b-button>
+                <b-button variant="warning" @click="openEditor">Edit</b-button>
             </div>
         </div>
     </div>
@@ -25,7 +25,11 @@ export default {
         vehicle: Object
     },
     methods: {
-        ...mapActions(["delVehicle", "setEditorStatus"]),
+        ...mapActions(["delVehicle", "setEditorStatus", "setCurrentVehicleId"]),
+        openEditor() {
+            this.setCurrentVehicleId(this.vehicle.id);
+            this.setEditorStatus(true);
+        }
     }
 }
 </script>
