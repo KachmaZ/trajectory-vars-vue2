@@ -7,26 +7,44 @@
                 <div class="vehicle-card_color__name">Color: {{ vehicle.color }}</div>
                 <div class="vehicle-card_color__circle" :style="{backgroundColor: vehicle.color}"></div>
             </div>
-        <div class="vehicle-card_price">Price: {{ vehicle.price }}</div>
+            <div class="vehicle-card_price mb-3">Price: {{ vehicle.price }}</div>
+
+            <div class="vehicle-card_btns">
+                <b-button variant="danger" @click="delVehicle(vehicle.id)">Delete</b-button>
+                <b-button variant="warning">Edit</b-button>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 
 export default {
     props: {
         vehicle: Object
+    },
+    methods: {
+        ...mapActions(["delVehicle"])
     }
 }
 </script>
 
 <style lang="scss">
 .vehicle-card {
+    height: 100%;
+    background-color: #121a46;
+
     border: 1px solid #d0d326;
     border-radius: 30px;
 
-    &_title {
+    // &_title {
+    // }
+    transition: ease-in 200ms;
+
+    &:hover {
+        background-color: #1e2652;
     }
 
     &_color {
@@ -40,6 +58,14 @@ export default {
             width: 30px;
             height: 30px;
             border-radius: 50%;
+        }
+    }
+
+    &_btns {
+        display: flex;
+        justify-content: space-between;
+        .btn {
+            width: 100px;
         }
     }
 }

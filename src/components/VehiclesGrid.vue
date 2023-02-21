@@ -1,6 +1,6 @@
 <template>
     <div class="vehicles-grid row g-4">
-        <VehicleCard v-for="vehicle in getAllVehicles" :key="vehicle.id" :vehicle="vehicle" />
+        <VehicleCard v-for="vehicle in getSortedVehicles" :key="vehicle.id" :vehicle="vehicle" />
     </div>
 </template>
 
@@ -10,7 +10,7 @@ import VehicleCard from "./parts/VehicleCard"
 
 export default {
     computed: {
-        ...mapGetters(["getAllVehicles"])
+        ...mapGetters(["getSortedVehicles"]),
     },
 
     components: {
@@ -19,8 +19,4 @@ export default {
 }
 </script>
 
-<style>
-.vehicle-card {
-    height: 200px;
-}
-</style>
+<style></style>

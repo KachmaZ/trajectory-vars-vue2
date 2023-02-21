@@ -2,7 +2,7 @@
     <div class="add">
         <div class="add_btn" @click="showToggle">
             <svg fill="#d0d326" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px" viewBox="0 0 45.402 45.402"
+                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 45.402 45.402"
                 xml:space="preserve">
                 <g>
                     <path d="M41.267,18.557H26.832V4.134C26.832,1.851,24.99,0,22.707,0c-2.283,0-4.124,1.851-4.124,4.135v14.432H4.141
@@ -14,13 +14,13 @@
         </div>
 
         <form v-if="shown" @submit.prevent="submitNewUser" class="add_form">
-            <input type="text" name="name" autocomplete="off" placeholder="Name" />
-            <input type="text" name="model" autocomplete="off" placeholder="Model" />
-            <input type="number" name="year" autocomplete="off" placeholder="Year" />
-            <input type="text" name="color" autocomplete="off" placeholder="Color" />
-            <input type="number" name="price" autocomplete="off" placeholder="Price" />
-            <input type="number" name="latitude" autocomplete="off" placeholder="Latitude">
-            <input type="number" name="longitude" autocomplete="off" placeholder="Longitude">
+            <input type="text" name="name" required autocomplete="off" placeholder="Name" />
+            <input type="text" name="model" required autocomplete="off" placeholder="Model" />
+            <input type="number" name="year" required autocomplete="off" placeholder="Year" />
+            <input type="text" name="color" required autocomplete="off" placeholder="Color" />
+            <input type="number" name="price" required autocomplete="off" placeholder="Price" />
+            <input type="number" name="latitude" required autocomplete="off" placeholder="Latitude">
+            <input type="number" name="longitude" required autocomplete="off" placeholder="Longitude">
             <button type="submit">Add vehicle</button>
         </form>
     </div>
@@ -85,6 +85,14 @@ export default {
         border-radius: 50%;
 
         cursor: pointer;
+
+        &:hover {
+            border-color: #8fd368;
+
+            svg {
+                fill: #8fd368;
+            }
+        }
     }
 
     &_form {
@@ -93,7 +101,7 @@ export default {
 
         position: absolute;
 
-        left: -7px;
+        right: -7px;
 
         z-index: 10;
 
@@ -128,6 +136,8 @@ export default {
             color: #babd13;
 
             background: #516087;
+
+            border: none;
             border-radius: 15px;
         }
     }

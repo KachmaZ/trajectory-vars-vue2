@@ -29,13 +29,13 @@ export default {
       ctx.commit("updateAddVehicle", vehicle);
     },
 
-    // delUser(ctx, userId) {
-    //   ctx.commit("updateDelUser", userId);
-    // },
+    delVehicle(ctx, vehicleId) {
+      ctx.commit("updateDelVehicle", vehicleId);
+    },
 
-    // setFilterValue(ctx, newValue) {
-    //   ctx.commit("updateFilterValue", newValue);
-    // },
+    setFilterValue(ctx, newValue) {
+      ctx.commit("updateFilterValue", newValue.trim());
+    },
   },
 
   mutations: {
@@ -59,19 +59,19 @@ export default {
       state.vehicles.unshift(vehicle);
     },
 
-    // updateDelUser(state, userId) {
-    //   state.users = state.users.filter((user) => user.id != userId);
-    // },
+    updateDelVehicle(state, vehicleId) {
+      state.vehicles = state.vehicles.filter((vehicle) => vehicle.id != vehicleId);
+    },
 
-    // updateFilterValue(state, newValue) {
-    //   state.filterValue = newValue;
-    // },
+    updateFilterValue(state, newValue) {
+      state.filterValue = newValue;
+    },
   },
 
   state: {
     vehicles: [], //contains full users list
     currentId: 21,
-    // filterValue: "",
+    filterValue: "name",
     // currentUser: {}, //contains current chosen user for UserPage component
     // fetchStatus: null, //represents current user fetching status to lead Loader component
   },
@@ -81,13 +81,29 @@ export default {
       return state.vehicles;
     },
 
+    getSortedVehicles(state) {
+      function compareFn(a, b) {
+        if (a[state.filterValue] > b[state.filterValue]) {
+          return -1;
+        }
+        if (a[state.filterValue] < b[state.filterValue]) {
+          return 1;
+        }
+        // a must be equal to b
+        return 0;
+      }
+      return state.vehicles.sort(compareFn)
+      // return state.vehicles.sort((a, b) =>
+      //   (a[state.filterValue] > b[state.filterValue]) ? 1 : ((a[state.filterValue] > b[state.filterValue]) ? -1 : 0))
+    },
+
     // getCurrentUser(state) {
     //   return state.currentUser;
     // },
 
-    // getFilterValue(state) {
-    //   return state.filterValue.toLowerCase();
-    // },
+    getFilterValue(state) {
+      return state.filterValue.toLowerCase();
+    },
 
     // isFetching(state) {
     //   return state.fetchStatus;
