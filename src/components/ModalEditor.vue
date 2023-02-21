@@ -1,3 +1,4 @@
+<!-- Global modal window for vehicle instances editing -->
 <template>
     <div class="modal-editor_wrapper" v-show="getEditorStatus" @click.stop="onClick($event)">
         <div class="modal-editor p-4">

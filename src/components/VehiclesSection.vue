@@ -1,3 +1,4 @@
+<!-- Section with main vehicle manipulation functionality -->
 <template>
     <div class="vehicles">
         <div class="vehicles_head">

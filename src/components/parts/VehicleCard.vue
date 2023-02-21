@@ -1,3 +1,4 @@
+<!-- Single vehicle instance representation -->
 <template>
     <div class="wrapper col-12 col-sm-6 col-lg-4 p-2">
         <div class="vehicle-card p-4">
@@ -26,6 +27,8 @@ export default {
     },
     methods: {
         ...mapActions(["delVehicle", "setEditorStatus", "setCurrentVehicleId"]),
+
+        // ModalEditor showing trigger
         openEditor() {
             this.setCurrentVehicleId(this.vehicle.id);
             this.setEditorStatus(true);

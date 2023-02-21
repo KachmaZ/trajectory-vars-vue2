@@ -9,6 +9,7 @@ export default {
       ctx.commit("updateVehicles", vehicles);
     },
 
+    // CRUD actions for vehicles
     addVehicle(ctx, vehicle) {
       vehicle = {
         ...vehicle,
@@ -27,10 +28,12 @@ export default {
       ctx.commit("updateEditVehicle", newVehicle)
     },
 
+    // Setting value for sorting
     setFilterValue(ctx, newValue) {
       ctx.commit("updateFilterValue", newValue.trim());
     },
 
+    // Setting Modal editor params
     setEditorStatus(ctx, newStatus) {
       ctx.commit("updateEditorStatus", newStatus)
     },
@@ -41,22 +44,17 @@ export default {
   },
 
   mutations: {
+    // Updating store on loading data
     updateVehicles(state, vehicles) {
       state.vehicles = vehicles;
     },
 
+    // Stored value for creating new vehicle instanses
     updateId(state, updId) {
       state.currentId += updId;
     },
 
-    updateCurrentVehicleId(state, newId) {
-      state.currentVehicleId = newId;
-    },
-
-    // updateFetchStatus(state, newStatus) {
-    //   state.fetchStatus = newStatus;
-    // },
-
+    // CRUD operations
     updateAddVehicle(state, vehicle) {
       state.vehicles.unshift(vehicle);
     },
@@ -70,12 +68,18 @@ export default {
 
       let vehicleIndex = newVehicles.findIndex(obj => obj.id === state.currentVehicleId)
       newVehicles[vehicleIndex] = newVehicle
-      
+
       state.vehicles = newVehicles
     },
 
+    // Setting sort value
     updateFilterValue(state, newValue) {
       state.filterValue = newValue;
+    },
+
+    // Editor params
+    updateCurrentVehicleId(state, newId) {
+      state.currentVehicleId = newId;
     },
 
     updateEditorStatus(state, newStatus) {
@@ -84,11 +88,11 @@ export default {
   },
 
   state: {
-    vehicles: [], //contains full users list
-    currentId: 21,
-    filterValue: "name",
-    currentVehicleId: 1, 
-    editorStatus: false,
+    vehicles: [], // contains full vehicles list
+    currentId: 21, // id counter for new instanses
+    filterValue: "id", // sorting value
+    currentVehicleId: 1, // id of vehicle instance which displays in ModalEditor
+    editorStatus: false, // ModalEditor show status
   },
 
   getters: {
@@ -110,20 +114,16 @@ export default {
       return state.vehicles.sort(compareFn)
     },
 
-    getCurrentVehicle(state) {
-      return state.vehicles.find(el => el.id === state.currentVehicleId)
+    getCurrentVehicle(state) { // For ModalEditor
+      return state.vehicles.find(el => el.id === state.currentVehicleId) 
     },
 
-    getFilterValue(state) {
+    getFilterValue(state) { // For sorting
       return state.filterValue.toLowerCase();
     },
 
-    getEditorStatus(state) {
+    getEditorStatus(state) { // For ModalEditor show/hide
       return state.editorStatus
     }
-
-    // isFetching(state) {
-    //   return state.fetchStatus;
-    // },
   },
 };

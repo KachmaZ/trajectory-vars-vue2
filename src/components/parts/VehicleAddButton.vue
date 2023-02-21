@@ -1,3 +1,4 @@
+<!-- New instances adding implementation component -->
 <template>
     <div class="add">
         <div class="add_btn" @click="showToggle">
@@ -32,7 +33,7 @@ import { mapActions } from "vuex";
 export default {
     data() {
         return {
-            shown: false,
+            shown: false, // New instance add form visability
         };
     },
 
@@ -43,6 +44,7 @@ export default {
             this.shown = !this.shown;
         },
 
+        // Add new vehicle instance
         submitNewUser(event) {
             let props = event.target.elements;
             let vehicle = {

@@ -1,3 +1,4 @@
+<!-- Reactive vehicle cards gallery -->
 <template>
     <div class="vehicles-grid row g-4">
         <VehicleCard v-for="vehicle in getSortedVehicles" :key="vehicle.id" :vehicle="vehicle" />

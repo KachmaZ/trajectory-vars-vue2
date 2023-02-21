@@ -1,6 +1,8 @@
+<!-- Reactive YandexMap component -->
 <template>
   <div class="yandex-map">
     <yandex-map :coords="coords" :zoom="zoom" @click="onClick">
+      <!-- Reactive markers render -->
       <ymap-marker
         v-for="vehicle in getAllVehicles"
         :key="vehicle.id"
@@ -22,7 +24,7 @@ export default {
       apiKey: "360b7364-84ef-49c8-9916-1d64891bf151",
     },
 
-    coords: [59.93901, 30.31583],
+    coords: [59.93901, 30.31583], // Palace Square, Saint-Petersburg
     zoom: 12,
   }),
 
@@ -30,17 +32,10 @@ export default {
     ...mapGetters(["getAllVehicles"]),
   },
 
-  methods: {
-    onClick(e) {
-      this.coords = e.get("coords");
-    },
-  },
-
   components: { yandexMap, ymapMarker },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .yandex-map {
   height: 500px;
