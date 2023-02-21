@@ -1,7 +1,7 @@
 <!-- Reactive YandexMap component -->
 <template>
   <div class="yandex-map">
-    <yandex-map :coords="coords" :zoom="zoom" @click="onClick">
+    <yandex-map :coords="coords" :zoom="zoom">
       <!-- Reactive markers render -->
       <ymap-marker
         v-for="vehicle in getAllVehicles"
